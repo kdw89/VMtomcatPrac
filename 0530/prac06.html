@@ -1,0 +1,22 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<HTML>
+<HEAD>
+<SCRIPT>
+var d = new Date(2020, 11, 31);		// 날짜 선언
+document.write(" 년도는 : " + d.getFullYear() +		//getYear()로는 120년이 출력된다
+	" 월은 : " + d.getMonth() +		//0~11월에 주의
+	" 일은 : " + d.getDate() +		//일
+	" 요일은 : " + d.getDay() +		//요일 일(0)~ 토(6)
+	" 시는 : " + d.getHours() +		
+	" 분은 : " + d.getMinutes() +
+	" 초는 : " + d.getSeconds() +
+	" 밀리초 : " + d.getMilliseconds() + "<HR>");		//시분초는 지정안해줘서 0
+d.setYear(2010);	// 2010년으로
+document.write(d + "<HR>");	
+d.setMonth(7);		// 7 = 8월이다
+document.write(d + "<HR>");		//선긋기
+</SCRIPT>
+</HEAD>
+<BODY>
+</BODY>
+</HTML>

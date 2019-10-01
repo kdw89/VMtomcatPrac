@@ -1,0 +1,26 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<HTML>
+<HEAD>
+<SCRIPT>
+function hakjum(){			//학점 function
+	score = prompt("점수를 입력하세요");		//입력창으로 score 받는다
+
+	if(score >= 90) {			//90이상
+		document.write("A 학점");
+	} else if(score >= 80) {			//80이상
+		document.write("B 학점");
+	} else if(score >= 70) {			//70이상
+		document.write("C 학점");
+	} else if(score >= 60) {			//60이상
+		document.write("D 학점");
+	} else {							//그 미만
+		document.write("F 학점");
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<SCRIPT>hakjum();</SCRIPT>			<!--function 호출-->
+입니다.
+</BODY>
+</HTML>

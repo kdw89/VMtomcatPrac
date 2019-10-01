@@ -1,0 +1,49 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<HTML>
+
+<HEAD>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        function move(obj, time) {
+            $(obj).stop().animate({
+                left: -350,
+                top: 0
+            }, time);               //350만큼 좌측 이동
+        }
+
+        function back(css) {
+            $(css).stop().animate({
+                left: 0,
+                top: 0              //원위치 복귀
+            });
+        }
+
+    </script>
+    <style>
+        .moving {
+            border: 1px solid #000000;
+            margin: 20px auto 0 auto;
+            text-align: right;
+            width: 550px;
+        }
+
+        .moving img {
+            cursor: pointer; 
+            position: relative;        
+        }
+
+    </style>
+</HEAD>
+
+<body>
+    <div class="init">
+        <button type="button" onclick="back('.moving img')">초기화 상태</button><br>
+    </div>
+    <div class="moving">
+        <img onclick="move(this, 6000)" width=300px src="pic1.jpg" /><br>    <!--6초동안 이동-->
+        <img onclick="move(this, 3000)" width=300px src="pic2.gif" /><br>    <!--3초동안 이동-->
+        <img onclick="move(this, 1000)" width=300px src="pic3.gif" /><br>    <!--1초동안 이동-->
+    </div>
+</body>
+
+</HTML>

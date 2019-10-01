@@ -1,0 +1,143 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<HTML>
+<HEAD>
+<style type="text/css">
+body {
+  font-family:'굴림체';
+  font-size:10pt;
+}					<!--여기도 역시 폰트를 적용한다-->
+</style>
+<SCRIPT>
+function pad(n, width) {
+  n = n + '';
+  return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+}						//여기도 역시 0이 들어간 숫자포맷을 사용하도록 하자
+
+var iPerson = 1000;	//사람수
+var pageNum = 30;	//페이지당 항목수
+	
+var sumkor=0;			//누적국어합
+var sumeng=0;			//누적영어합
+var summat=0;			//누적수학합
+var sumsum=0;			//누적합계합?
+var sumave=0;			//누적평균합?
+	
+var page_sumkor=0;		//페이지국어합
+var page_sumeng=0;		//페이지영어합
+var page_summat=0;		//페이지수학합
+var page_sumsum=0;		//페이지합계의합?
+var page_sumave=0;		//페이지평균의합?
+var page_cnt=0;			//페이지인원수카운트
+	
+var studentid = new Array();		//학번 배열
+let name = [];						//이름 배열(var로 하면 undefined라고만 뜬다..)
+var kor = new Array();				//국어점수 배열
+var eng = new Array();				//영어점수 배열
+var mat = new Array();				//수학점수 배열
+
+for (var i=0; i<iPerson; i++) {		//사람수만큼 입력
+	studentid[i] = pad(i+1, 4);		//학번 앞에 0을 추가하여 넣는다
+	name[i] = '학생' + pad(i+1, 4);		//학생에 숫자를 추가한 것을 이름으로 삼는다
+	kor[i] = Math.round(Math.random()*100);		//국어점수 랜덤, 반올림
+	eng[i] = Math.round(Math.random()*100);		//영어점수 랜덤, 반올림
+	mat[i] = Math.round(Math.random()*100);		//수학점수 랜덤, 반올림
+}
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+var hh = today.getHours();
+var mi = today.getMinutes();
+var ss = today.getSeconds();		//날짜 포맷
+</SCRIPT>
+</HEAD>
+<BODY>
+<SCRIPT>
+document.write("<TABLE border=0>");		//표 시작
+for (var page=1; page <= (iPerson/pageNum +1); page++) {
+	if (page > iPerson/pageNum  && iPerson%pageNum == 0 ) break; //페이지수 맞아떨어지면 break 
+	document.write("<TR><TD colspan=7 align=center>" +"성적집계표"+ "</TD></TR>");
+	document.write("<TR><TD colspan=2>" +"PAGE : "+ page + "</TD>");
+	document.write("<TD colspan=5 align=right>" +"출력일자 : "+yyyy+"."+pad(mm, 2)+"."+pad(dd, 2)+" "+pad(hh, 2)+":"+pad(mi, 2)+":"+pad(ss, 2)+"</TD></TR>");
+	document.write("<TR><TD colspan=7><HR></TD></TR>");			//출력일자 시분초를 표시하고 줄을 그어준다
+		document.write("<TR>");
+		document.write("<TD>번호</TD>");
+		document.write("<TD>이름</TD>");
+		document.write("<TD align=right>국어</TD>");
+		document.write("<TD align=right>영어</TD>");
+		document.write("<TD align=right>수학</TD>");
+		document.write("<TD align=right>총합</TD>");
+		document.write("<TD align=right>평균</TD>");		//과목이름, 정렬은 적당히
+		document.write("</TR>");
+	document.write("<TR><TD colspan=7><HR></TD></TR>");
+		for (var j=0+((page-1)*pageNum); j < ((page)*pageNum) ; j++) {
+				if (page_cnt == pageNum || pageNum*(page-1)+page_cnt >= iPerson)	break;		//페이지당 인원수가 맞거나 카운트가 인원수를 넘을때 break
+						document.write("<TR>");
+						document.write("<TD>"+studentid[j]+"</TD>");
+						document.write("<TD>"+name[j]+"</TD>");
+						document.write("<TD align=right>"+kor[j]+"</TD>");
+						document.write("<TD align=right>"+eng[j]+"</TD>");
+						document.write("<TD align=right>"+mat[j]+"</TD>");
+						document.write("<TD align=right>"+ (kor[j]+eng[j]+mat[j]) +"</TD>");					//학번, 이름, 성적, 합계, 평균 출력
+						document.write("<TD align=right>"+ ((kor[j]+eng[j]+mat[j])/3).toFixed(2) +"</TD>");		//평균은 소수점 둘째자리까지만 표기(toFixed)
+						document.write("</TR>");
+							sumkor += kor[j];					page_sumkor += kor[j];
+							sumeng += eng[j];					page_sumeng += eng[j];
+							summat += mat[j];					page_summat += mat[j];
+							sumsum += kor[j]+eng[j]+mat[j];		page_sumsum += kor[j]+eng[j]+mat[j];
+							sumave += (kor[j]+eng[j]+mat[j])/3;	page_sumave += (kor[j]+eng[j]+mat[j])/3;
+							//누적 페이지 합					//현재 페이지 합
+						page_cnt++;
+		}
+		document.write("<TR><TD colspan=7><HR></TD></TR>");			//선 그어주기
+		
+		document.write("<TR><TD colspan=2>" +"현재페이지 : " + "</TD>");
+		document.write("<TD colspan=5 align=right>" + page_cnt + " 명"+"</TD></TR>");
+		document.write("<TR>");
+			document.write("<TD colspan=2>"+"합계"+"</TD>");
+			document.write("<TD align=right>"+page_sumkor+"</TD>");
+			document.write("<TD align=right>"+page_sumeng+"</TD>");
+			document.write("<TD align=right>"+page_summat+"</TD>");
+			document.write("<TD align=right>"+page_sumsum+"</TD>");
+			document.write("<TD align=right>"+page_sumave.toFixed(2)+"</TD>");				//현재 페이지 합계 출력
+		document.write("</TR>");
+		document.write("<TR>");
+			document.write("<TD colspan=2>"+"평균"+"</TD>");
+			document.write("<TD align=right>"+(page_sumkor/page_cnt).toFixed(2)+"</TD>");
+			document.write("<TD align=right>"+(page_sumeng/page_cnt).toFixed(2)+"</TD>");
+			document.write("<TD align=right>"+(page_summat/page_cnt).toFixed(2)+"</TD>");
+			document.write("<TD align=right>"+(page_sumsum/page_cnt).toFixed(2)+"</TD>");
+			document.write("<TD align=right>"+(page_sumave/page_cnt).toFixed(2)+"</TD>");			//현재페이지 평균 출력
+		document.write("</TR>");
+		
+		document.write("<TR><TD colspan=7><HR></TD></TR>");
+		
+		document.write("<TR><TD colspan=2>" +"누적페이지 : " + "</TD>");
+		document.write("<TD colspan=5 align=right> 총 " + (pageNum*(page-1)+page_cnt) + " 명"+"</TD></TR>");
+		document.write("<TR>");
+			document.write("<TD colspan=2>"+"합계"+"</TD>");
+			document.write("<TD align=right>"+sumkor+"</TD>");
+			document.write("<TD align=right>"+sumeng+"</TD>");
+			document.write("<TD align=right>"+summat+"</TD>");
+			document.write("<TD align=right>"+sumsum+"</TD>");
+			document.write("<TD align=right>"+sumave.toFixed(2)+"</TD>");				//현재 페이지 합계 출력
+		document.write("</TR>");
+		document.write("<TR>");
+			document.write("<TD colspan=2>"+"평균"+"</TD>");
+			document.write("<TD align=right>"+(sumkor/(pageNum*(page-1)+page_cnt)).toFixed(2)+"</TD>");
+			document.write("<TD align=right>"+(sumeng/(pageNum*(page-1)+page_cnt)).toFixed(2)+"</TD>");
+			document.write("<TD align=right>"+(summat/(pageNum*(page-1)+page_cnt)).toFixed(2)+"</TD>");
+			document.write("<TD align=right>"+(sumsum/(pageNum*(page-1)+page_cnt)).toFixed(2)+"</TD>");
+			document.write("<TD align=right>"+(sumave/(pageNum*(page-1)+page_cnt)).toFixed(2)+"</TD>");			//현재페이지 평균 출력
+		document.write("</TR>");
+		document.write("<TR><TD colspan=7><HR></TD></TR>");
+		document.write("<TR><TD colspan=7><HR></TD></TR>");
+		page_sumkor=0;		page_sumeng=0;		page_summat=0;
+		page_sumsum=0;		page_sumave=0;
+		page_cnt=0;		//페이지 변수 초기화
+}
+document.write("</TABLE>");		//표 끝
+</SCRIPT>
+</BODY>
+</HTML>

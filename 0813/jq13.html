@@ -1,0 +1,27 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<HTML>
+<HEAD>
+	<script src="jquery-3.4.1.min.js"></script>
+	<script> 
+        $(document).ready(function() {
+            $("#hide").click(function() {
+                $("img").hide("slow");      //누를 시 천천히 그림 숨김
+            });
+            $("#show").click(function() {
+                $("img").show("fast");      //빠르게 그림 표시
+            });
+            $("#toggle").click(function() {
+                $("img").toggle(3000);      //반복적으로 토글, 3초 소요
+            });
+
+        });
+    </script> 
+</HEAD>
+<body>
+    <button id="hide">hide</button>
+    <button id="show">show</button>
+    <button id="toggle">toggle</button>
+    <p></p>
+    <img name="pic1" src="pic1.jpg"/>
+</body>
+</HTML>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Insert title here</title>
+      <script src="jquery-3.4.1.min.js"></script>
+      <script>
+        $.ajax({
+          url: "http://localhost:8080/0814/ajax_grade.jsp",  //아이피가 다르면 cross-origin 에러 발생
+          data: {},
+          type: "GET",
+          dataType: "json"
+        })
+        .done(function(json) {
+          console.log(json);
+          var innerTable = "";              //조립해서 html에 넣어줄 것이다.
+          innerTable += "<table border=1><tr><th>이름</th><th>학번</th><th>국어</th><th>영어</th><th>수학</th></tr>";
+          for (const temp of json) {
+            innerTable += "<tr>";
+            innerTable += "<td>" + temp.name + "</td>";
+            innerTable += "<td>" + temp.studentid + "</td>";
+            innerTable += "<td>" + temp.kor + "</td>";
+            innerTable += "<td>" + temp.eng + "</td>";
+            innerTable += "<td>" + temp.mat + "</td>";
+            innerTable += "</tr>";
+          }
+          innerTable += "</table>";
+          $("#text").html(innerTable);          //id=text의 html에 덮어쓴다
+
+        })
+        .fail(function(xhr, status, errorThrown) {
+          console.log(xhr, status, errorThrown);
+          $("#text").html("오류가 발생했습니다.<br />")
+          .append("오류명 : " + errorThrown + "<br />")
+          .append("상태 : " + status);
+        })
+        .always(function(xhr, status) {
+          console.log(xhr, status);
+          // $("#text").html("요청이 완료되었습니다!");      //여기에 덮어쓰여져서 곤란했다
+        });
+      </script>
+  </head>
+  <body>
+    <div id="text"></div>
+  </body>
+</html>

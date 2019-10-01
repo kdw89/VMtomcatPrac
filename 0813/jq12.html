@@ -1,0 +1,30 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<HTML>
+<HEAD>
+	<script src="jquery-3.4.1.min.js"></script>
+	<script> 
+        $(document).ready(function() {
+            $("button.move").click(function() {
+                $("img").animate( {
+                    left: '300px',
+                    height: '300px',
+                    width: '350px'      //우측으로 300px 이동하면서 확대
+                });
+            });
+        $("button.init").click(function() {
+                $("img").animate( {
+                    left: '0px',
+                    height: '100px',
+                    width: '130px'      //좌측으로 쏠리며 축소
+                });
+            });
+        });
+    </script> 
+</HEAD>
+<body>
+    <button class="move">확대</button>
+    <button class="init">축소</button>
+    <p></p>
+    <img name="pic1" src="pic1.jpg" width="130" height="100" style="position:relative"/>
+</body>
+</HTML>

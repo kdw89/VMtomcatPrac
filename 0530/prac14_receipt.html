@@ -1,0 +1,148 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<HTML>
+<HEAD>
+<style type="text/css">
+body {
+  font-family:'굴림체';
+  font-size:10pt;
+}						<!--폰트 설정(이전의 영수증 코드가 이 폰트에 맞춰져 있다-->
+</style>
+<SCRIPT>
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}						// 숫자 포맷(3자리당 쉼표) 펑션
+
+function pad(n, width) {
+  n = n + '';
+  return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+}						// 숫자 앞에 0을 추가하는 펑션
+
+var itemname= new Array("츄파츕스미니언즈", "포키카페라떼", "츄러스", "이맛쌀20kg", "양파링",
+		"참크래커", "바나나1봉", "콘푸로스트", "간고등어350g", "방울토마토500g",
+		"포스틱", "프링글스", "시골모둠쌈", "버터링", "냉동블루베리",
+		"홈런볼5번들", "새우깡", "ABC초코쿠키", "파인애플1통", "오곡으로만든첵스초코600g",
+		"초코송이", "애플쨈쿠키", "쿠크다스", "왕고래밥", "짜파게티5입",
+		"괄도네넴띤5입", "깻잎1봉", "카프리썬10입", "하우스감귤800g", "매일우유900ml", "아무거나");		//물품(30가지)
+var price = new Array(2380, 1180, 2380, 50990, 900,
+		3360, 2980, 3980, 6980, 2980,
+		900, 2980, 2980, 4180, 9900,
+		4480, 1020, 2380, 4980, 4500,
+		1680, 2880, 2980, 980, 3850,
+		303800, 990, 3680, 33012900, 2480, 1234);				//물건가격들
+var num = new Array(3, 2, 1, 9, 4,
+		2, 2, 2, 1, 3,
+		4, 3, 3, 999, 2,
+		2, 2, 1, 1, 2,
+		5, 4, 2, 3, 3,
+		3, 4, 2, 9, 5, 5);								//구매수량
+var taxFree = new Array(false, false, false, true, false,
+		false, false, false, true, true,
+		false, false, true, false, true,
+		false, false, false, true, false, 
+		false, false, false, false, false, 
+		false, true, false, true, true, false);			//면세여부
+
+var totalPrice = 0;				//합계가격
+var totalNontax = 0;			//면세품 가격합
+var totalTax = 0;				//과세물품가격합
+
+var iTaxrate = 10;				//부가세율
+var taxval, netval;				//세금, 세전가격
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+var hh = today.getHours();
+var mi = today.getMinutes();		//날짜, 시분초
+
+</SCRIPT>
+</HEAD>
+<BODY>
+<SCRIPT>
+document.write("<TABLE border=0>");
+	document.write("<TR>");
+		document.write("<TD rowspan=3 colspan=3 valign=middle>" +"<img src=./emart.png>"+ "</TD>");	//이마트 로고 삽입
+		document.write("<TD colspan=2>" +"이마트 죽전점 (031)888-1234"+ "</TD>");
+	document.write("</TR>");
+	document.write("<TR><TD colspan=2>" +"206-66-50913 이감수"+ "</TD></TR>");
+	document.write("<TR><TD colspan=2>" +"용인시 수지구 포은대로 552"+ "</TD></TR>");
+	document.write("<TR><TD colspan=5>" +"영수증 미지참시 교환/환불 불가(30일내)"+ "</TD></TR>");
+	document.write("<TR><TD colspan=5>" +"교환/환불 구매점에서 가능(결제카드지참)"+ "</TD></TR>");
+	document.write("<TR><TD colspan=5>" +"체크카드/신용카드 청구취소 반영은"+ "</TD></TR>");
+	document.write("<TR><TD colspan=5>" +"최대 3~5일 소요 (주말,공휴일제외)"+ "</TD></TR>");		//colspan을 통한 글자 칸맞추기
+	document.write("<TR height=15><TD colspan=5></TD></TR>");
+	document.write("<TR>");
+		document.write("<TD colspan=3>" +"[구 매]"+yyyy+"-"+pad(mm, 2)+"-"+pad(dd, 2)+" "+pad(hh, 2)+":"+pad(mi, 2)+"</TD>");
+		document.write("<TD colspan=2 align=right>" +"POS:0009-2418"+ "</TD>");		//날짜, 시분초 표시
+	document.write("</TR>");
+
+document.write("<TR><TD colspan=5><HR></TD></TR>");		//줄긋기
+	document.write("<TR>");
+		document.write("<TD>"+""+"</TD>");
+		document.write("<TD>" +"상품명"+ "</TD>");
+		document.write("<TD align=right>" +"단가"+ "</TD>");
+		document.write("<TD align=right>" +"수량"+ "</TD>");
+		document.write("<TD align=right>" +"금  액"+ "</TD>");
+	document.write("</TR>");
+document.write("<TR><TD colspan=5><HR></TD></TR>");		//영수증 머리 부분
+
+for (var i=0; i<itemname.length; i++) {
+	var taxFreeMark = "";			//면세물품 체크용
+	if (taxFree[i] == true) {
+		taxFreeMark = "*";			//면세물품에 * 표시
+		totalNontax = totalNontax + (price[i]*num[i]); //면세품 가격 합
+	}
+	document.write("<TR>");
+		document.write("<TD>"+pad(i+1,2)+taxFreeMark+"</TD>");		//면세물품에 * 표시
+		document.write("<TD>" +itemname[i]+ "</TD>");				//물건이름
+		document.write("<TD align=right>" +numberWithCommas(price[i])+ "</TD>");		//단가표시
+		document.write("<TD align=right>" +numberWithCommas(num[i])+ "</TD>");			//수량표시
+		document.write("<TD align=right>" + numberWithCommas(price[i]*num[i]) + "</TD>");	//가격표시
+	document.write("</TR>");
+	totalPrice = totalPrice + (price[i]*num[i]);	//가격누적
+	
+	totalTax = totalPrice - totalNontax;		// 과세물품가격합
+}
+
+if (totalTax/(100.0+iTaxrate)*iTaxrate == Math.floor(totalTax/(100.0+iTaxrate)*iTaxrate))
+	taxval = Math.floor(totalTax/(100.0+iTaxrate)*iTaxrate);
+else										// 과세물품 가격에서의 세금
+	taxval = Math.floor(totalTax/(100.0+iTaxrate)*iTaxrate)+1;
+netval = totalTax - taxval;					// 과세물품의 세전금액
+
+	document.write("<TR>");
+		document.write("<TD colspan=3 align=right>"+"(*)면&nbsp;세&nbsp;&nbsp;물&nbsp;품"+"</TD>");//면세품 가격합 출력
+		document.write("<TD colspan=2 align=right>"+numberWithCommas(totalNontax)+"</TD>");
+	document.write("</TR>");
+	document.write("<TR>");	
+		document.write("<TD colspan=3 align=right>" +"과&nbsp;세&nbsp;&nbsp;물&nbsp;품"+ "</TD>");//과세물품 세전금액
+		document.write("<TD colspan=2 align=right>" +numberWithCommas(netval)+ "</TD>");
+	document.write("</TR>");
+	document.write("<TR>");
+		document.write("<TD colspan=3 align=right>" +"부&nbsp;&nbsp;&nbsp;가&nbsp;&nbsp;&nbsp;세"+ "</TD>");//부가세
+		document.write("<TD colspan=2 align=right>" +numberWithCommas(taxval)+ "</TD>");
+	document.write("</TR>");
+	document.write("<TR>");
+		document.write("<TD colspan=3 align=right>" +"합&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;계"+ "</TD>");//합계가격
+		document.write("<TD colspan=2 align=right>" +numberWithCommas(totalPrice)+ "</TD>");
+	document.write("</TR>");
+	document.write("<TR>");
+		document.write("<TD colspan=3 align=left>" +"결&nbsp;제&nbsp;대&nbsp;상&nbsp;금&nbsp;액"+ "</TD>");//합계가격=결제액
+		document.write("<TD colspan=2 align=right>" +numberWithCommas(totalPrice)+ "</TD>");
+	document.write("</TR>");
+document.write("<TR><TD colspan=5><HR></TD></TR>");
+	document.write("<TR>");
+		document.write("<TD colspan=3 align=left>" +"0024 하&nbsp;&nbsp;나"+ "</TD>");
+		document.write("<TD colspan=2 align=right>" +"5417**8890/07850246"+ "</TD>");
+	document.write("</TR>");
+	document.write("<TR>");
+		document.write("<TD colspan=3 align=left>" +"카드결제"+ "</TD>");//결제액
+		document.write("<TD colspan=2 align=right>" +"일시불 / "+numberWithCommas(totalPrice)+"</TD>");
+	document.write("</TR>");
+document.write("<TR><TD colspan=5><HR></TD></TR>");
+document.write("<TR><TD colspan=5>"+"홍*두 고객님의 포인트 현황입니다."+"</TD></TR>");
+document.write("</TABLE>");			//표 끝
+</SCRIPT>
+</BODY>
+</HTML>

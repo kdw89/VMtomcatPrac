@@ -1,0 +1,26 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page import="java.sql.*,javax.sql.*,java.io.*" %>
+<%@ page errorPage="error.jsp" %>
+<%
+	String id = request.getParameter("id");			//id를 받아 삭제한다
+%>
+<html>
+<head>
+</head>
+<body>
+<%
+	Class.forName("com.mysql.jdbc.Driver");
+	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/kopo03", "root", "kopo03");
+	PreparedStatement pstmt = null;
+	String sql = "delete from gongji where id=?";
+	pstmt = conn.prepareStatement(sql);
+	pstmt.setString(1,id);
+	pstmt.executeUpdate();
+
+	pstmt.close();
+	conn.close();
+%>
+<script>location.href = "gongji_list.jsp"; </script>		<!--리스트로 바로이동-->
+</body>
+</html>

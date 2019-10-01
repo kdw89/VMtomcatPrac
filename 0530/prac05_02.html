@@ -1,0 +1,22 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<HTML>
+<HEAD>
+</HEAD>
+<BODY>
+<SCRIPT>
+document.write("<H2> 구구단 </H2>");		//큰글씨의 제목
+document.write("<TABLE border=0 width=100%>");	//테두리 없는 표, 가로길이는 화면폭에맞게
+for(var i=1; i<10; i=i+3){		//i가 3씩 커지는 루프 - 1, 4, 7
+	for(var j=1; j<10; j++){	//j가 1씩 커지는 루프 1~9
+		document.write("<TR>");
+		document.write("<TD>" +i+ " * "+j+" = " +i*j+ "</TD>");	//1단, 4단, 7단
+		document.write("<TD>" +(i+1)+ " * "+j+" = " +(i+1)*j+ "</TD>");	//2단, 5단, 8단
+		document.write("<TD>" +(i+2)+ " * "+j+" = " +(i+2)*j+ "</TD>");	//3단, 6단, 9단 출력
+		document.write("</TR>");
+	}
+	document.write("<TR><TD colspan=3><HR></TD></TR>");	//표의 열을 합쳐 선을 그어줌
+}
+document.write("</TABLE>");
+</SCRIPT>
+</BODY>
+</HTML>

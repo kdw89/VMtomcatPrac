@@ -1,0 +1,8 @@
+//사용자 밑에 프로젝트 파일 및 inception 파일 두개 총 3개 넣어야 한다. 
+python inceptionv3_retrain.py --image_dir ./carTest
+
+//tmp에 비교할 파일 넣고 이름을 test_chartreux 바군다.
+
+//이걸 돌림
+python retrain_run_inference.py
+

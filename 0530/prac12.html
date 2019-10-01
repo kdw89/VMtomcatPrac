@@ -1,0 +1,21 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<HTML>
+<HEAD>
+<SCRIPT>
+var name = "Hello";
+
+function call1(){
+//	window.location = "http://www.naver.com";	//해당 url로 이동
+	document.write(window.location.href + "<br>");	//	URL 반환
+	document.write(window.location.port + "<br>");	// 서버포트 반환
+	document.write(window.location.hostname + "<br>");	// URL의 도메인 반환
+	document.write(window.location.hash + "<br>");	// 주소값에 붙어있는 anchor값 반환
+	document.write(window.location.protocol + "<br>");	// 프로토콜 반환
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<SCRIPT>call1();</SCRIPT><br>
+Good...
+</BODY>
+</HTML>

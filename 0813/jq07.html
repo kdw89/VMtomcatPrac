@@ -1,0 +1,35 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<HTML>
+<HEAD>
+	<script src="jquery-3.4.1.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("button.add").click(function() {
+				$("h1, h2, p").addClass("blue");
+				$("div").addClass("important");     //스타일을 적용
+			});
+			$("button.remove").click(function() {
+				$("h1, h2, p").removeClass("blue");
+				$("div").removeClass("important");  //스타일을 제거
+			});
+		});
+	</script>
+	<style>
+		.important {
+			font-weight: bold;
+			font-size: xx-large;        //굵고 큰 글씨
+		}
+		.blue {
+			color: blue;                //파란색
+		}
+	</style>
+</HEAD>
+<BODY>
+	<h1>HTML5</h1>
+	<h2>CSS3</h2>
+	<p>자바스크립트</p>
+	<div>제이쿼리</div>
+	<button class="add">CSS 적용</button>
+	<button class="remove">CSS 적용 해제</button>
+</BODY>
+</HTML>

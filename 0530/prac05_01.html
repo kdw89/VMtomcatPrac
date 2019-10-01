@@ -1,0 +1,19 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<HTML>
+<HEAD>
+<SCRIPT>
+for (i=0; i<10; i++) {
+	document.write(i);		//0~9까지 출력
+}
+document.write("<br>");		//줄띄우기
+var obj = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9);		//1~9까지 array
+answer = "";		//초기값 공백
+for (var j in obj) {
+	answer += "" +j+ ":" + obj[j];		//숫자와 문자를 덧붙인다
+	document.write(answer + "<br>");	//출력 후 줄띄우기
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+</BODY>
+</HTML>

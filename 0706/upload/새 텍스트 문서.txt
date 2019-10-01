@@ -1,0 +1,55 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+/**
+ * 거리계산
+ * @author pc1
+ *
+ */
+
+
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
+public class Lec02 {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		
+		// \은 특수문자이므로 \\두개를 써야 한다.
+		File f = new File("C:\\Users\\pc1\\data\\전국무료와이파이표준데이터.txt");
+		BufferedReader br = new BufferedReader(new FileReader(f));
+		
+		String readtxt;
+		
+		//한줄을 먼저 읽어야 필드명을 알 수 있다.
+		if((readtxt= br.readLine())==null) {
+			System.out.printf("빈 파일입니다\n");	//빈 파일일 경우
+			return;
+		}
+		String[] field_name = readtxt.split("\t");	//필드명을 탭에 따라 나눠준다
+		
+		//융합기술 우리집 위도경도, 지도에서 알아보기
+		double lat = 37.3860521;
+		double lng = 127.1214038;
+		
+		int LineCnt=0;	//줄수 카운트
+		
+		while((readtxt = br.readLine()) != null) {
+			String[] field = readtxt.split("\t");	//필드를 탭에 따라 나눠준다
+			System.out.printf("**[%d번째 항목]********************\n", LineCnt);
+			System.out.printf(" %s : %s\n", field_name[9], field[9]);	//9번 : 지번주소
+			System.out.printf(" %s : %s\n", field_name[12], field[12]);	//12번 : 위도주소
+			System.out.printf(" %s : %s\n", field_name[13], field[13]);	//13번 : 경도주소
+			double dist=Math.sqrt(Math.pow(Double.parseDouble(field[12])-lat,2) 
+					+ Math.pow(Double.parseDouble(field[13])-lng,2));	//거리계산
+			System.out.printf(" 현재지점과 거리 : %f\n", dist);			//거리출력
+			
+			System.out.printf("**************************************\n");
+			LineCnt++;
+		}
+		br.close();
+	}
+}
+
+
+

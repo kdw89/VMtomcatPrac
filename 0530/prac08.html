@@ -1,0 +1,33 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<HTML>
+<HEAD>
+<SCRIPT>
+var arr = new Array("빨간색", 1010, "deadfire", "Javascript", "XX");		//array 선언
+
+document.write("<H2>Original</H2>");		//제ㅡ목
+for(i=0; i<arr.length; i++){
+	document.write("arr["+i+"] : " + arr[i] + "<BR>");		//array를 원래 순서대로 뽑아낸다
+}
+
+arr.sort();							//정렬
+document.write("<HR><H2>기본정렬</H2>");
+for(i=0; i<arr.length; i++){
+	document.write("arr["+i+"] : " + arr[i] + "<BR>");		//정렬 결과 출력
+}
+
+function compare(a, b){				//역순으로 정렬하는 함수 선언
+	if (a < b) return 1;			//크기를 비교해
+	else if(a > b) return -1;		//순서바꾸기
+	else return 0;					//같을 때는 유지?
+}
+
+arr.sort(compare);					//역순으로 정렬
+document.write("<H2> 역순정렬 </H2>");						//정렬 결과 출력
+for (i=0; i<arr.length; i++){
+	document.write("arr["+i+"] : " + arr[i] + "<BR>");		//숫자 문자를 따로 비교하는지
+}															// 숫자의 위치는 변하지 않는다
+</SCRIPT>
+</HEAD>
+<BODY>
+</BODY>
+</HTML>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<html>
+<head><title>z-index 프로퍼티</title>
+<style>
+div{position:absolute;}
+img{position:absolute;}
+#spadeA{z-index:-3;left:10px;top:20px;}
+#spade2{z-index:2;left:60px;top:50px;}
+#spade3{z-index:3;left:100px;top:80px;}		/*z-index는 가중치 */
+#spade7{z-index:7;left:150px;top:110px;}
+</style>
+</head>
+<body>
+<h3>z-index 프로퍼티</h3>
+<hr>
+<div>
+<img id="spadeA" src="spade_a.png"
+	width="100" height="140" alt="스페이드A">
+<img id="spade2" src="spade_2.png"
+	width="100" height="140" alt="스페이드2">
+<img id="spade3" src="spade_3.png"
+	width="100" height="140" alt="스페이드3">
+<img id="spade7" src="spade_7.png"
+	width="100" height="140" alt="스페이드7">
+</div>
+</body>
+</html>

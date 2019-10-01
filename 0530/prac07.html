@@ -1,0 +1,20 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<HTML>
+<HEAD>
+<SCRIPT>
+function call(){		//function 선언
+	MyString = " Hello World Welcome to my world";		//문구
+	document.write("Test1 : "+ MyString.charAt(11) + "<br>");		//11번째 글자(공백포함)
+	document.write("Test2 : "+ MyString.indexOf("to") + "<br>");	//to 가 처음 발견된 인덱스
+	document.write("Test3 : "+ MyString.lastIndexOf("to") + "<br>");	//to가 마지막에 포함된 인덱스
+	document.write("Test4 : "+ MyString.substr(5,5) + "<br>");		//substr(시작위치, 길이) 만큼 자른다
+	document.write("Test5 : "+ MyString.toLowerCase("AaBbCc") + "<br>");	//소문자화
+	document.write("Test6 : "+ MyString.toUpperCase("AaBbCc") + "<br>");	//대문자화
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<SCRIPT>call();</SCRIPT>			<!--펑션 콜-->
+Good...
+</BODY>
+</HTML>

@@ -1,0 +1,30 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<HTML>
+<HEAD>
+	<script src="jquery-3.4.1.min.js"></script>
+	<script>
+		var n=0;
+		$(document).ready(function() {
+			$("div.out").mouseenter(function() {     //마우스 포인터가 들어왔을 때
+				$("p:first", this).text("마우스 포인트 들어옴");     //첫번째 p태그 메시지
+				$("p:last", this).text(++n);         //두번째 p태그 숫자 증가
+			});
+		});
+	</script>
+	<style>
+		div.out {
+			width:200px;
+			height: 100px;
+			border:1px solid #000000;
+			text-align: center;
+			background-color: yellow;
+		}
+	</style>
+</HEAD>
+<BODY>
+	<div class="out">
+		<p>마우스 이벤트 알아보기</p>
+		<p>0</p>
+	</div>
+</BODY>
+</HTML>

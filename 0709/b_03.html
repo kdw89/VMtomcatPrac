@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<html>
+	<head>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style>
+#fixed{
+	position:fixed;
+	bottom:0%;
+	right:0%;			/*브라우저 우하단에 고정*/
+	width:fixed;
+	padding:5px;
+	color:white;
+}
+
+td {
+	padding:5px
+}
+.outline{
+	background-color: #ffffff;
+	width: 1000px;
+	padding:20px;
+	border-radius:20px;
+	border: 5px solid gold;
+}
+.map {
+	position:relative;
+	border:3px solid lightgray;
+	}
+.map > p {
+	position:absolute;	/*절대 배치*/
+	height:20px;
+	width:15px;
+	}
+</style>
+	</head>
+		<body background='/0709/background.jpg'>
+<center>
+<br><div class='outline' >
+<h3>개구리조트 주변 주차장</h3>
+<br>
+<table width=900>
+	<tr>
+		<td>
+			<div class='map'>
+				<img src='/0709/image/map.png' width=100% height=auto>
+				<p style="left:340px; top:270px"><img id=loc1 src='/0709/image/marker_off.png'></p>
+				<p style="left:420px; top:200px"><img id=loc2 src='/0709/image/marker_off.png'></p>
+
+				<p style="left:230px; top:160px"><img id=loc3 src='/0709/image/marker_off.png'></p>
+				<p style="left:520px; top:140px"><img id=loc4 src='/0709/image/marker_off.png'></p>
+				<p style="left:200px; top:400px"><img id=loc5 src='/0709/image/marker_off.png'></p>
+				<p style="left:350px; top:370px"><img id=loc6 src='/0709/image/marker_off.png'></p>
+			</div>
+		</td>
+<td width=50></td>
+		<td>
+			<div class="list-group">
+			  <a href="#" class="list-group-item list-group-item-action">제휴주차장목록</a>
+			  
+			  <a href="#" onmouseover=loc1.src='/0709/image/marker_on.png' onmouseout=loc1.src='/0709/image/marker_off.png' 
+				class="list-group-item list-group-item-action list-group-item-primary">개구리조트 개굴주차장</a>
+			  <a href="#" onmouseover=loc2.src='/0709/image/marker_on.png' onmouseout=loc2.src='/0709/image/marker_off.png' 
+				class="list-group-item list-group-item-action list-group-item-success">도마뱀타운 주차장</a>
+			  <a href="#" onmouseover=loc3.src='/0709/image/marker_on.png' onmouseout=loc3.src='/0709/image/marker_off.png' 
+				class="list-group-item list-group-item-action list-group-item-danger">도롱뇽 공영주차장</a>
+			  <a href="#" onmouseover=loc4.src='/0709/image/marker_on.png' onmouseout=loc4.src='/0709/image/marker_off.png' 
+				class="list-group-item list-group-item-action list-group-item-warning">왕눈이 주차타워</a>
+			  <a href="#" onmouseover=loc5.src='/0709/image/marker_on.png' onmouseout=loc5.src='/0709/image/marker_off.png' 
+				class="list-group-item list-group-item-action list-group-item-info">아로미빌딩 민영주차장</a>
+			  <a href="#" onmouseover=loc6.src='/0709/image/marker_on.png' onmouseout=loc6.src='/0709/image/marker_off.png' 
+				class="list-group-item list-group-item-action list-group-item-dark">케로로주차장</a>
+			</div>
+		</td>
+	</tr>
+</table>
+</div>
+</center>
+<div id=fixed><a href='/0709/d_01.jsp' target=main><img width=200 src='/0709/image/back.png'></a></div>
+</body>
+</html>

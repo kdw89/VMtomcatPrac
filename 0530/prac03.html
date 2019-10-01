@@ -1,0 +1,20 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<HTML>
+<HEAD>
+<SCRIPT>
+var name = "Hello";		//전역변수로 선언된 Hello
+function call1(){
+	var name = "World";		//function 내 지역변수로 선언된 World
+	document.write("지역:"+name);		//지역변수 출력
+}
+function call2(){
+	document.write("전역"+name);		//전역변수 출력
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<SCRIPT>call1();</SCRIPT><br>		<!--1번 function-->
+<SCRIPT>call2();</SCRIPT><br>		<!--2번 function-->
+Good...
+</BODY>
+</HTML>

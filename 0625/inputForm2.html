@@ -1,0 +1,50 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<HTML>
+<HEAD>
+<script>
+	function onlyNumber(event){				//숫자만 입력
+		event = event || window.event;
+		var keyID = (event.which) ? event.which : event.keyCode;
+		if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+			return;
+		else
+			return false;
+	}
+ 
+	function removeChar(event) {			//문자 제거
+		event = event || window.event;
+		var keyID = (event.which) ? event.which : event.keyCode;
+		if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+			return;
+		else
+			event.target.value = event.target.value.replace(/[^0-9]/g, "");
+	}
+	function fnc(value, min, max) 			//숫자 최대값
+	{
+		if(parseInt(value) < 0 || isNaN(value)) 
+			return 0; 
+		else if(parseInt(value) > max) 
+			return max; 
+		else return value;
+	}
+</script>
+
+</HEAD>
+<BODY>
+<h1>성적 조회 후 정정/삭제<h1>
+<form method="post" action="showREC.jsp" autocomplete="off">
+<table>
+<tr><td>조회할 학번 : </td>
+<td><input type="text" name="studentId" onkeydown='return onlyNumber(event)' onkeyup='this.value = fnc(this.value, 0, 9999999)' onfocusout='removeChar(event)' onkeypress='removeChar(event)'></td>
+<td><input type="submit" value="조회"></td></tr>
+</table>
+</form>
+<table>
+<tr><td>이름</td><td><input type=text value="검색을" readonly></td></tr>
+<tr><td>학번</td><td><input type=text value='수행해' readonly></td></tr>
+<tr><td>국어</td><td><input type=text value='주십시오'readonly></td></tr>
+<tr><td>영어</td><td><input type=text value='' readonly></td></tr>
+<tr><td>수학</td><td><input type=text value='' readonly></td></tr>
+</table>
+</BODY>
+</HTML>

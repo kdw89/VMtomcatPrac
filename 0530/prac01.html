@@ -1,0 +1,17 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<HTML>
+<HEAD>
+</HEAD>
+<BODY>
+<SCRIPT>
+name = prompt("Enter Name", "홍길동");		//입력 받기
+if(confirm("Continue ?\nClick Button") == true){	// 선택창
+	answer = 'true';			// 확인 = true
+}else{
+	answer = 'false';			// 취소 = false
+}
+alert("Name : "+name+"\nAnswer : "+answer);		//경고창 : 확인단추밖에 없다
+document.write(" Your Name is " + answer);		//출력
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Insert title here</title>
+      <script src="jquery-3.4.1.min.js"></script>
+      <script>
+        $.ajax({
+          url: "http://localhost:8080/0814/ajax.jsp",  //아이피가 다르면 cross-origin 에러 발생
+          // data: {name:"홍길동"},
+          data: {name:"흥부"},
+          type: "GET",
+          dataType: "json"
+        })
+        .done(function(json) {                //완료?
+          console.log(json);
+          $("<h1>").text(json.title).appendTo("body");
+          $("<div class=\"content\">").html(json.html).appendTo("body");
+        })
+        .fail(function(xhr, status, errorThrown) {        //실패
+          console.log(xhr, status, errorThrown);
+          $("#text").html("오류가 발생했습니다.<br />")
+          .append("오류명 : " + errorThrown + "<br />")
+          .append("상태 : " + status);
+        })
+        .always(function(xhr, status) {        //항상
+          console.log(xhr, status);
+          $("#text").html("요청이 완료되었습니다!");
+        });
+      </script>
+  </head>
+  <body>
+    <div id="text"></div>
+  </body>
+</html>

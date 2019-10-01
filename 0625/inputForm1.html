@@ -1,0 +1,63 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<HTML>
+<HEAD>
+<script>
+	function onlyNumber(event){
+		event = event || window.event;
+		var keyID = (event.which) ? event.which : event.keyCode;
+		if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+			return;
+		else
+			return false;
+	}							//숫자만 입력받는 펑션
+ 
+	function removeChar(event) {
+		event = event || window.event;
+		var keyID = (event.which) ? event.which : event.keyCode;
+		if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+			return;
+		else
+			event.target.value = event.target.value.replace(/[^0-9]/g, "");
+	}							//문자 제거 펑션
+	function fnc(value, min, max) 
+	{
+		if(parseInt(value) < 0 || isNaN(value)) 
+			return 0; 
+		else if(parseInt(value) > 100) 
+			return "100"; 
+		else return value;
+	}							//숫자 최대값 펑션
+	
+	function fncInputKorean() {
+            if ((event.keyCode < 12592) || (event.keyCode > 12687)) {
+                alert("한글만 입력할 수 있습니다.");
+                //Event.returnValue = false;
+                return false;
+        }
+    }
+
+function myFunction() {
+
+    alert("복붙 방지");
+	return false;
+}
+
+
+
+</script>
+</HEAD>
+<BODY>
+<h1>성적입력추가<h1>
+<form method="post" action="insertDB.jsp" autocomplete="off">
+<table border="1">
+<tr><td>이름</td><td><input type="text" name="name" size=20 maxlength=10 onkeypress='return fncInputKorean();' onpaste="return myFunction();"></td></tr>
+<tr><td>학번</td><td align="center">자동입력</td></tr>
+<tr><td>국어</td><td><input type="text" name="kor" maxlength="3" onkeydown='return onlyNumber(event)' onkeyup='this.value = fnc(this.value, 0, 100)' onfocusout='removeChar(event)' onkeypress='removeChar(event)'></td></tr>
+<tr><td>영어</td><td><input type="text" name="eng" maxlength="3" onkeydown='return onlyNumber(event)' onkeyup='this.value = fnc(this.value, 0, 100)' onfocusout='removeChar(event)' onkeypress='removeChar(event)'></td></tr>
+<tr><td>수학</td><td><input type="text" name="mat" maxlength="3" onkeydown='return onlyNumber(event)' onkeyup='this.value = fnc(this.value, 0, 100)' onfocusout='removeChar(event)' onkeypress='removeChar(event)'></td></tr>
+</table>													<!--펑션 동작 -->
+<br>
+<input type="submit" value="추가">
+</form>
+</BODY>
+</HTML>

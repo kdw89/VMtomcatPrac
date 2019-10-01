@@ -1,0 +1,27 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<HTML>
+<HEAD>
+	<script src="jquery-3.4.1.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("button").click(function() {
+				$("h1, h2, p, div").toggleClass("red");    
+			});           //클래스 적용/해제 반복하는 토글 버튼
+
+		});
+	</script>
+	<style>
+        .red{
+            color: red;
+            border: 1px solid blue;        //빨간 글씨 파란 테두리
+        }
+	</style>
+</HEAD>
+<BODY>
+	<h1>HTML5</h1>
+	<h2>CSS3</h2>
+	<p>자바스크립트</p>
+	<div>제이쿼리</div>
+	<button>CSS 적용/해제</button>
+</BODY>
+</HTML>
